@@ -9,6 +9,9 @@ function App() {
         <p>
           Ross <code>src/App.js</code> and save to reload.
         </p>
+        <button class="button">
+          Button
+        </button>
         <a
           className="App-link"
           href="https://reactjs.org"
