@@ -1,0 +1,20 @@
+{
+    "service": "users",
+    "functions": {
+      "usersCreate": {
+        "events": [
+          {
+            "http": "post users/create"
+          }
+        ]
+      },
+      "usersDelete": {
+        "events": [
+          {
+            "http": "delete users/delete"
+          }
+        ]
+      }
+    },
+    "resources": {}
+  }
