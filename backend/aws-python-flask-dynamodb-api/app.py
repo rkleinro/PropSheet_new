@@ -44,6 +44,9 @@ def create_user():
 
     return jsonify({'userId': user_id, 'name': name})
 
+@app.route('/whoami', methods=['GET'])
+def whoami_user():
+    return jsonify({'userId': 'rmk328', 'name': "Ross"})
 
 @app.errorhandler(404)
 def resource_not_found(e):
