@@ -1,6 +1,45 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase';
 
+// Configure Firebase.
+var firebaseConfig = {
+  apiKey: "AIzaSyDGAgesvZAQY81BBKHB-ddegQiblNfj1qw",
+  authDomain: "propsheet.firebaseapp.com",
+  projectId: "propsheet",
+  storageBucket: "propsheet.appspot.com",
+  messagingSenderId: "958954615615",
+  appId: "1:958954615615:web:675b23574fe49b53bcd98a"
+};
+firebase.initializeApp(firebaseConfig);
+
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+  signInSuccessUrl: '/',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID
+  ]
+};
+
+class SignInScreen extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>My App</h1>
+        <p>Please sign-in:</p>
+      </div>
+    );
+  }
+}
+
+
+/*
 function App() {
   return (
     <div className="App box">
@@ -25,9 +64,20 @@ function App() {
     </div>
   );
 }
+*/
 
-function SignedIn(){
-  return(
+
+class SignIn extends React.Component {
+
+  render(){
+
+    if(this.state.isSignedIn){
+      return(
+        <SelectContest></SelectContest>
+      )
+    }      
+    
+    return(
 
     <div class="container is-fluid">
       <div class="notification is-primary">
@@ -42,15 +92,32 @@ function SignedIn(){
           <h1 class="title">Let's Get Started</h1>
         </section>
         <section class="section is-medium">
-          <h1 class="title">Medium section</h1>
-          <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-          </h2>
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
       </section>
      </div>
     </div>
 
     )
+  }
+
+    // The component's Local state.
+    state = {
+      isSignedIn: false // Local signed-in state.
+    };
+
+  // Listen to the Firebase Auth state and set the local state.
+  componentDidMount() {
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
+        (user) => this.setState({isSignedIn: !!user})
+    );
+  }
+
+  // Make sure we un-register Firebase observers when the component unmounts.
+  componentWillUnmount() {
+    this.unregisterAuthObserver();
+  }
+
+  
 }
 
 function SelectContest(){
@@ -72,31 +139,31 @@ function SelectContest(){
             <ul>
               <li class="is-active">
               <a>
-                <span class="icon is-small"><i class="football-ball"></i></span>
+                <span class="icon is-small"><i class="fas fa-football-ball"></i></span>
                 <span>NFL</span>
               </a>
               </li>
               <li>
                 <a>
-                  <span class="icon is-small"><i class="baseball-ball"></i></span>
+                  <span class="icon is-small"><i class="fas fa-baseball-ball"></i></span>
                   <span>MLB</span>
                 </a>
               </li>
               <li>
                 <a>
-                  <span class="icon is-small"><i class="basket-ball"></i></span>
+                  <span class="icon is-small"><i class="fas fa-basketball-ball"></i></span>
                   <span>NBA</span>
                 </a>
               </li>
               <li>
                 <a>
-                  <span class="icon is-small"><i class="hockey-puck"></i></span>
+                  <span class="icon is-small"><i class="fas fa-hockey-puck"></i></span>
                   <span>NHL</span>
                 </a>
               </li> 
               <li>
                 <a>
-                  <span class="icon is-small"><i class="golf-ball"></i></span>
+                  <span class="icon is-small"><i class="fas fa-golf-ball"></i></span>
                   <span>PGA</span>
                 </a>
               </li> 
@@ -108,7 +175,7 @@ function SelectContest(){
           <div class="card">
             <div class="card-header">
               <div class="card-header-icon">
-                <span class="icon"><i class="football-ball"></i></span>
+                <span class="icon"><i class="fas fa-football-ball"></i></span>
               </div>
               <div class="card-header-title">
                 Super Bowl Sunday!
@@ -117,6 +184,9 @@ function SelectContest(){
               <button class="button is-warning is-rounded">Enter</button>
               </div>
             </div>
+
+            {/* Use {"ContestSize"} to input a variable instead of text from the backend API  */}
+
             <footer class="card-footer">
                 <a href="#" class="card-footer-item">233/500 Entries</a>
                 <a href="#" class="card-footer-item">$30 Entry</a>
@@ -128,7 +198,7 @@ function SelectContest(){
           <div class="card">
             <div class="card-header">
               <div class="card-header-icon">
-                <span class="icon"><i class="football-ball"></i></span>
+                <span class="icon"><i class="fas fa-football-ball"></i></span>
               </div>
               <div class="card-header-title">
                 Hardcore Super Bowl!
@@ -148,7 +218,7 @@ function SelectContest(){
           <div class="card">
             <div class="card-header">
               <div class="card-header-icon">
-                <span class="icon"><i class="golf-ball"></i></span>
+                <span class="icon"><i class="fas fa-golf-ball"></i></span>
               </div>
               <div class="card-header-title">
                 Masters Challenge!
@@ -170,4 +240,4 @@ function SelectContest(){
     )
 }
 
-export default SignedIn;
+export default SignIn;

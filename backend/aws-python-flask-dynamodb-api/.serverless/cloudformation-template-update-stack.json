@@ -180,7 +180,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1616092357744-2021-03-18T18:32:37.744Z/aws-python-flask-dynamodb-api.zip"
+          "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1616522618146-2021-03-23T18:03:38.146Z/aws-python-flask-dynamodb-api.zip"
         },
         "Handler": "wsgi_handler.handler",
         "Runtime": "python3.8",
@@ -329,7 +329,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1616092354852": {
+    "ApiGatewayDeployment1616522614648": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
