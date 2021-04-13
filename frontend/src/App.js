@@ -4,6 +4,7 @@ import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 
+
 // Configure Firebase.
 var firebaseConfig = {
   apiKey: "AIzaSyDGAgesvZAQY81BBKHB-ddegQiblNfj1qw",
@@ -120,124 +121,148 @@ class SignIn extends React.Component {
   
 }
 
-function SelectContest(){
-  return(
 
-    <div class="container is-fluid">
-      <div class="notification is-primary">
-        <section class="hero is-info">
-        <div class="hero-body">
-          <p class="title">
-          Prop Sheet
-          </p>
-          <p
-            class="title">
-            Select a contest
-          </p>
-          <div class="tabs is-toggle is-toggle-rounded has-text-black is-fullwidth tabs-link-active-border-bottom-color">
+class SelectContest extends React.Component {
+  state = {
+    contests: null
+  }
+
+  async componentDidMount() {
+    const idToken = await firebase.auth().currentUser?.getIdToken()
+    const response = await fetch('http://localhost:5000/contests', {
+      headers: {
+        'Authorization': idToken
+      }
+    })
+    if (response.status === 401) {
+      return console.log('unauthorized')
+    }
+    const contests = await response.json()
+    // save it to your components state so you can use it during render
+    this.setState({contests: contests})
+    console.log(contests)
+  }
+  render(){
+    return(
+      <div class="container is-fluid">
+        <div class="notification is-primary">
+          <section class="hero is-info">
+          <div class="hero-body">
+            <p class="title">
+            Prop Sheet
+            </p>
+            <p
+              class="title">
+              Select a contest
+            </p>
+            <div class="tabs is-toggle is-toggle-rounded has-text-black is-fullwidth tabs-link-active-border-bottom-color">
+            
+              <ul>
+                <li class="is-active">
+                <a>
+                  <span class="icon is-small"><i class="fas fa-football-ball"></i></span>
+                  <span>NFL</span>
+                </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-baseball-ball"></i></span>
+                    <span>MLB</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-basketball-ball"></i></span>
+                    <span>NBA</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-hockey-puck"></i></span>
+                    <span>NHL</span>
+                  </a>
+                </li> 
+                <li>
+                  <a>
+                    <span class="icon is-small"><i class="fas fa-golf-ball"></i></span>
+                    <span>PGA</span>
+                  </a>
+                </li> 
+              </ul>
+            </div>
+          </div>
+          </section>
+          { 
+                  this.state.contests && this.state.contests.map(contests => {
+                    return (
+                      <section class="section">
+                        <div class="card">
+                          <div class="card-header">
+                            <div class="card-header-icon">
+                              <span class="icon"><i class="fas fa-football-ball"></i></span>
+                            </div>
+                            <div class="card-header-title">
+                              {contests.ContestName}
+                            </div>
+                            <div class="card-header-icon is-right">
+                            <button class="button is-warning is-rounded">Enter</button>
+                            </div>
+                          </div>
+                          <footer class="card-footer">
+                              <a href="#" class="card-footer-item">{contests.Entrants}/250 Entries</a>
+                              <a href="#" class="card-footer-item">$30 Entry</a>
+                              <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
+                          </footer>
+                          </div>
+                      </section> 
+                    )
+                  })
+                }
           
-            <ul>
-              <li class="is-active">
-              <a>
-                <span class="icon is-small"><i class="fas fa-football-ball"></i></span>
-                <span>NFL</span>
-              </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fas fa-baseball-ball"></i></span>
-                  <span>MLB</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fas fa-basketball-ball"></i></span>
-                  <span>NBA</span>
-                </a>
-              </li>
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fas fa-hockey-puck"></i></span>
-                  <span>NHL</span>
-                </a>
-              </li> 
-              <li>
-                <a>
-                  <span class="icon is-small"><i class="fas fa-golf-ball"></i></span>
-                  <span>PGA</span>
-                </a>
-              </li> 
-            </ul>
-          </div>
-        </div>
-        </section>
-        <section class="section">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon">
-                <span class="icon"><i class="fas fa-football-ball"></i></span>
+          <section class="section">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-header-icon">
+                  <span class="icon"><i class="fas fa-football-ball"></i></span>
+                </div>
+                <div class="card-header-title">
+                  Hardcore Super Bowl!
+                </div>
+                <div class="card-header-icon is-right">
+                <button class="button is-warning is-rounded">Enter</button>
+                </div>
               </div>
-              <div class="card-header-title">
-                Super Bowl Sunday!
-              </div>
-              <div class="card-header-icon is-right">
-              <button class="button is-warning is-rounded">Enter</button>
-              </div>
+              <footer class="card-footer">
+                  <a href="#" class="card-footer-item">233/250 Entries</a>
+                  <a href="#" class="card-footer-item">$100 Entry</a>
+                  <a href="#" class="card-footer-item">$20,000 Total Winnings</a>
+              </footer>
             </div>
-
-            {/* Use {"ContestSize"} to input a variable instead of text from the backend API  */}
-
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">233/500 Entries</a>
-                <a href="#" class="card-footer-item">$30 Entry</a>
-                <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
-            </footer>
+          </section>
+          <section class="section">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-header-icon">
+                  <span class="icon"><i class="fas fa-golf-ball"></i></span>
+                </div>
+                <div class="card-header-title">
+                  Masters Challenge!
+                </div>
+                <div class="card-header-icon is-right">
+                <button class="button is-warning is-rounded">Enter</button>
+                </div>
+              </div>
+              <footer class="card-footer">
+                  <a href="#" class="card-footer-item">233/500 Entries</a>
+                  <a href="#" class="card-footer-item">$30 Entry</a>
+                  <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
+              </footer>
             </div>
         </section>
-        <section class="section">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon">
-                <span class="icon"><i class="fas fa-football-ball"></i></span>
-              </div>
-              <div class="card-header-title">
-                Hardcore Super Bowl!
-              </div>
-              <div class="card-header-icon is-right">
-              <button class="button is-warning is-rounded">Enter</button>
-              </div>
-            </div>
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">233/250 Entries</a>
-                <a href="#" class="card-footer-item">$100 Entry</a>
-                <a href="#" class="card-footer-item">$20,000 Total Winnings</a>
-            </footer>
-          </div>
-        </section>
-        <section class="section">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon">
-                <span class="icon"><i class="fas fa-golf-ball"></i></span>
-              </div>
-              <div class="card-header-title">
-                Masters Challenge!
-              </div>
-              <div class="card-header-icon is-right">
-              <button class="button is-warning is-rounded">Enter</button>
-              </div>
-            </div>
-            <footer class="card-footer">
-                <a href="#" class="card-footer-item">233/500 Entries</a>
-                <a href="#" class="card-footer-item">$30 Entry</a>
-                <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
-            </footer>
-          </div>
-      </section>
-     </div>
-    </div>
-
+      </div>
+      </div>
     )
+   }
 }
 
 export default SignIn;
