@@ -209,56 +209,15 @@ class SelectContest extends React.Component {
                             </div>
                           </div>
                           <footer class="card-footer">
-                              <a href="#" class="card-footer-item">{contests.Entrants}/250 Entries</a>
-                              <a href="#" class="card-footer-item">$30 Entry</a>
-                              <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
+                              <a href="#" class="card-footer-item">{contests.Entrants}/{contests.TotalEntries} Entries</a>
+                              <a href="#" class="card-footer-item">${contests.EntryFee} Entry</a>
+                              <a href="#" class="card-footer-item">${contests.TotalWinnings} Total Winnings</a>
                           </footer>
                           </div>
                       </section> 
                     )
                   })
                 }
-          
-          <section class="section">
-            <div class="card">
-              <div class="card-header">
-                <div class="card-header-icon">
-                  <span class="icon"><i class="fas fa-football-ball"></i></span>
-                </div>
-                <div class="card-header-title">
-                  Hardcore Super Bowl!
-                </div>
-                <div class="card-header-icon is-right">
-                <button class="button is-warning is-rounded">Enter</button>
-                </div>
-              </div>
-              <footer class="card-footer">
-                  <a href="#" class="card-footer-item">233/250 Entries</a>
-                  <a href="#" class="card-footer-item">$100 Entry</a>
-                  <a href="#" class="card-footer-item">$20,000 Total Winnings</a>
-              </footer>
-            </div>
-          </section>
-          <section class="section">
-            <div class="card">
-              <div class="card-header">
-                <div class="card-header-icon">
-                  <span class="icon"><i class="fas fa-golf-ball"></i></span>
-                </div>
-                <div class="card-header-title">
-                  Masters Challenge!
-                </div>
-                <div class="card-header-icon is-right">
-                <button class="button is-warning is-rounded">Enter</button>
-                </div>
-              </div>
-              <footer class="card-footer">
-                  <a href="#" class="card-footer-item">233/500 Entries</a>
-                  <a href="#" class="card-footer-item">$30 Entry</a>
-                  <a href="#" class="card-footer-item">$12,000 Total Winnings</a>
-              </footer>
-            </div>
-        </section>
       </div>
       </div>
     )

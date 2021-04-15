@@ -66,16 +66,27 @@ def contests():
         'ContestName': 'Super Bowl Sunday!',
         'Sport': 'Football',
         'Entrants': 233,
-        'EntryFee': '$30',
-        'TotalWinnings': '$12,000',
+        'TotalEntries': 500,
+        'EntryFee': 30,
+        'TotalWinnings': 12000,
         },
         {
         'ContestID': 2,
         'ContestName': 'Hardcore Super Bowl',
         'Sport': 'Football',
-        'Entrants': 300,
-        'EntryFee': '$30',
-        'TotalWinnings': '$12,000',
+        'Entrants': 233,
+        'TotalEntries': 250,
+        'EntryFee': 100,
+        'TotalWinnings': 20000,
+        },
+         {
+        'ContestID': 3,
+        'ContestName': 'Masters Challenge!',
+        'Sport': 'Football',
+        'Entrants': 233,
+        'TotalEntries': 500,
+        'EntryFee': 30,
+        'TotalWinnings': 12000,
         }
         ])
     except:
