@@ -129,7 +129,7 @@ class SelectContest extends React.Component {
 
   async componentDidMount() {
     const idToken = await firebase.auth().currentUser?.getIdToken()
-    const response = await fetch('http://propsheet.live/contests', {
+    const response = await fetch('http://propsheet.live', {
       headers: {
         'Authorization': idToken
       }
