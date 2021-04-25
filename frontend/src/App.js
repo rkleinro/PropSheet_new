@@ -129,7 +129,7 @@ class SelectContest extends React.Component {
 
   async componentDidMount() {
     const idToken = await firebase.auth().currentUser?.getIdToken()
-    const response = await fetch('https://fbbaagtrfb.execute-api.us-east-1.amazonaws.com/dev/{proxy+}', {
+    const response = await fetch('https://fbbaagtrfb.execute-api.us-east-1.amazonaws.com/dev/contests', {
       headers: {
         'Authorization': idToken
       }
