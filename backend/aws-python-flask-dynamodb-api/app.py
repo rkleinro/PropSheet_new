@@ -5,6 +5,7 @@ from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
 from google.oauth2 import id_token
 from google.auth.transport import requests
+from pprint import pprint
 
 request2 = requests.Request()
 
@@ -97,6 +98,33 @@ def contests():
 def resource_not_found(e):
     return make_response(jsonify(error='Not found!'), 404)
 
-  
-
+# def query_my_contests(userId):
+#     if not dynamodb:
+#         dynamodb = boto3.resource('dynamodb')
+#     table = dynamodb.Table('Contests')
+#     response = table.query(
+#         KeyConditionExpression=Key('userId').eq(userId)
+#     )
+#     return response['Items']
+# def join_contest(userId, contestID):
+#     if not dynamodb:
+#         dynamodb = boto3.resource('dynamodb')
+#     table = dynamodb.Table('Contests')
+#     response = table.put_item(
+#         Item={
+#             'userId': userId,
+#             'contestName': contestID
+#         },
+#     )
+#     return response['Items']
+# def query_contests():
+#     if not dynamodb:
+#         dynamodb = boto3.resource('dynamodb')
+#     table = dynamodb.Table('Contests')
+#     response = table.scan()
+#     return response['Items']
+# @app.route('/contests', methods=['GET'])
+# def contests:
+#     items = query_contests()
+#     return jsonify(items)
 

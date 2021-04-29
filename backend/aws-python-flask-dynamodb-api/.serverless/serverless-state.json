@@ -206,7 +206,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619371491271-2021-04-25T17:24:51.271Z/aws-python-flask-dynamodb-api.zip"
+                "S3Key": "serverless/aws-python-flask-dynamodb-api/dev/1619717199217-2021-04-29T17:26:39.217Z/aws-python-flask-dynamodb-api.zip"
               },
               "Handler": "wsgi_handler.handler",
               "Runtime": "python3.8",
@@ -229,14 +229,14 @@
               "ApiLogGroup"
             ]
           },
-          "ApiLambdaVersionQPfqlfrcIFTLJpyBNxapxcm4HfSPbfnsavFceOObQg": {
+          "ApiLambdaVersionII8sjuA1lRRAqXesowyLoHlnym2DUcWK5auP9V8llQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ApiLambdaFunction"
               },
-              "CodeSha256": "0UbIebKG1pR7gGld6/EfLlmg5IiIPcXHhQCYeS8Hf0o="
+              "CodeSha256": "O9BZhBgF6C2FNpZ8n1l3FiEwXtkSo+GdQ9A4+Ub4nOk="
             }
           },
           "ApiGatewayRestApi": {
@@ -355,7 +355,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1619371460163": {
+          "ApiGatewayDeployment1619717165752": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -437,7 +437,7 @@
           "ApiLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ApiLambdaVersionQPfqlfrcIFTLJpyBNxapxcm4HfSPbfnsavFceOObQg"
+              "Ref": "ApiLambdaVersionII8sjuA1lRRAqXesowyLoHlnym2DUcWK5auP9V8llQ"
             }
           },
           "ServiceEndpoint": {
@@ -589,7 +589,7 @@
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "ApiLambdaVersionQPfqlfrcIFTLJpyBNxapxcm4HfSPbfnsavFceOObQg"
+        "versionLogicalId": "ApiLambdaVersionII8sjuA1lRRAqXesowyLoHlnym2DUcWK5auP9V8llQ"
       }
     },
     "resources": {
@@ -647,7 +647,7 @@
     "artifact": "/Users/rosskleinrock/github/PropSheet_new/backend/aws-python-flask-dynamodb-api/.serverless/aws-python-flask-dynamodb-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/aws-python-flask-dynamodb-api/dev/1619371491271-2021-04-25T17:24:51.271Z",
+    "artifactDirectoryName": "serverless/aws-python-flask-dynamodb-api/dev/1619717199217-2021-04-29T17:26:39.217Z",
     "artifact": "aws-python-flask-dynamodb-api.zip"
   }
 }
